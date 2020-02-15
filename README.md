@@ -1,86 +1,96 @@
-# A Simple ChatBot using ChatterBot and Flask
+# 🤖 ChatterBot Flask — AI Chatbot with Wikipedia Fallback
 
-## What is a ChatBot?
+A conversational AI chatbot built with **Flask** and **ChatterBot**, featuring YAML-based training data across multiple topics and an intelligent Wikipedia fallback for unknown queries. Includes voice input and text-to-speech output.
 
-A chatbot is a computer program that conducts the conversation between the user and a computer by using textual or auditory means. It works as a real-world conversational partner.
+---
 
-You have seen different chatbots in your life Siri, Cortana, Alexa, and so forth. As per a review, the chatbot is required to finish around 80% of all works in the coming decades. Presently, chatbots are practically finishing 30% of the tasks. With the expanding boom, it has turned out to be imperative to learn Machine Learning and Artificial Intelligence.
+## ✨ Features
 
-## Working of ChatterBot
+- **Multi-Topic Training** — Trained on 15+ YAML datasets covering AI, politics, history, food, humor, sports, and more
+- **Wikipedia Fallback** — When confidence is low, automatically fetches answers from Wikipedia
+- **Voice Input** — Speech-to-text support via Web Speech API
+- **Text-to-Speech** — Bot responses are spoken aloud using the browser's SpeechSynthesis API
+- **Real-Time Chat UI** — Responsive chat panel with color-coded messages (green for user, white for bot)
+- **Confidence Threshold** — Only returns trained responses when confidence exceeds 10%
 
-ChatterBot is a Python library that makes it easy to generate automated responses to a user’s input. ChatterBot uses a selection of machine learning algorithms to produce different types of responses. This makes it easy for developers to create chat bots and automate conversations with users. The language independent design of ChatterBot allows it to be trained to speak any language. Additionally, the machine-learning nature of ChatterBot allows an agent instance to improve it’s own knowledge of possible responses as it interacts with humans and other sources of informative data.
+## 🛠️ Tech Stack
 
-The chatterbot works in the following manner:
+| Layer      | Technology                          |
+|------------|-------------------------------------|
+| Backend    | Python, Flask                       |
+| AI Engine  | ChatterBot, ListTrainer             |
+| NLP        | spaCy, NLTK                         |
+| Scraping   | BeautifulSoup4, Requests            |
+| Frontend   | HTML, Bootstrap 3, jQuery           |
+| Database   | SQLite (ChatterBot default storage) |
 
-- Get the input from the user.
-- Process the input.
-- Returns the value that is generated with the highest confidence value.
-- Return the response to the user.
+## 📁 Project Structure
 
-## Working of the Project
-
-First, the chatbot is trained with a set of training data present in `/data` directory and creates a sqlite3 database. When the users inputs a query the bot searches for a response from the database if it finds an answer then it prints the response or else it will search for an answer from Wikipedia using web scraping and provide an appropriate response.
-
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. Make sure you have Python installed on your machine.
-
-### Setting up the Project
-
-- Clone the repository using
-
-```bash
-git clone https://github.com/VRohit1901/ChatBot-Flask
+```
+chatterbot-flask-2020/
+├── chatbot.py              # Main Flask app with ChatterBot + Wikipedia fallback
+├── requirments.txt         # Python dependencies
+├── db.sqlite3              # ChatterBot SQLite database
+├── data/                   # YAML training datasets
+│   ├── ai.yml
+│   ├── botprofile.yml
+│   ├── computers.yml
+│   ├── conversations.yml
+│   ├── emotion.yml
+│   ├── food.yml
+│   ├── gossip.yml
+│   ├── greetings.yml
+│   ├── history.yml
+│   ├── humor.yml
+│   ├── literature.yml
+│   ├── money.yml
+│   ├── politics.yml
+│   ├── psychology.yml
+│   ├── sports.yml
+│   └── trivia.yml
+└── templates/
+    └── chat.html           # Chat UI with voice support
 ```
 
-- Open the terminal/cmd and navigate to the project folder.
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Python 3.7+
+- pip
+
+### Installation
 
 ```bash
-cd ChatBot-Flask
-```
+# Clone the repository
+git clone https://github.com/yourusername/chatterbot-flask-2020.git
+cd chatterbot-flask-2020
 
-- Install the requirments.txt using
+# Install dependencies
+pip install -r requirments.txt
 
-```bash
-pip install requirments.txt
-```
-
-- Requirments.txt will install all the required dependancies.
-
-### Usage
-
-- Now run the `chatbot.py` using
-
-```bash
+# Run the application
 python chatbot.py
 ```
 
-Congrats! The app should now be running on <http://localhost:5000>
+The app will start at `http://127.0.0.1:5000/`
 
-- Open `http://localhost:5000` in your browser to interact with the chatbot.
+## 💬 How It Works
 
-### Preview
+1. User sends a message via the chat interface
+2. ChatterBot checks its trained data for a matching response
+3. If confidence > 10% → returns the trained response
+4. If the message is "bye" → returns a farewell message
+5. Otherwise → scrapes Wikipedia for an answer
+6. If Wikipedia fails → returns a fallback "no idea" response
 
-![Screenshot](templates/screenshot.jpg)
+## 📸 Preview
 
-## How do I deploy this to a web server?
+The chat interface features a dark-themed panel with:
+- Color-coded messages (green = user, white = bot)
+- Send, Clear, and Voice buttons
+- Auto-scroll to latest messages
 
-If you do not have a dedicated server, I highly recommend using PythonAnywhere, AWS or Heroku to host your application.
+---
 
-## Reference
-
-- [ChatterBot](https://github.com/gunthercox/ChatterBot)
-
-## Contributing
-
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Branch
-3. Commit your changes
-4. Push to the Branch
-5. Open a Pull Request
-
-## License
-
-Distributed under the [GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/). See `LICENSE` for more information.
+> **Note:** This project was built as a freelance project in 2020 demonstrating early conversational AI using rule-based and retrieval-based methods.
