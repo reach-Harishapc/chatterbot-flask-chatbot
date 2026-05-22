@@ -92,5 +92,3 @@ The chat interface features a dark-themed panel with:
 - Auto-scroll to latest messages
 
 ---
-
-> **Note:** This project was built as a freelance project in 2020 demonstrating early conversational AI using rule-based and retrieval-based methods.
